@@ -1,0 +1,71 @@
+<section class="body" *ngIf="property">
+  <div class="main-container">
+    <div class="slider-container">
+      <carousel
+        [objectFit]="'cover'"
+        [cellWidth]="'100%'"
+        [arrowsOutside]="true"
+        [autoplay]="true"
+        [dots]="true"
+        [loop]="true"
+      >
+        <div class="carousel-cell" *ngFor="let image of property.img">
+          <img src="{{ image.url }}" />
+        </div>
+      </carousel>
+    </div>
+
+    <div class="features-container">
+      <div class="title">
+        <h1 class="property-title">
+          {{ property.city }}, {{ property.distriction }},
+          {{ property.area }} m<span class="power">2</span>,
+          {{ property.rooms }}
+          <span *ngIf="property.rooms > 1">pokoje</span>
+          <span *ngIf="property.rooms === 1">pokój</span>
+        </h1>
+
+        <h3 class="property-subtitle">{{ property.subtitle }}</h3>
+      </div>
+
+      <div class="price">
+        <h1 class="property-price text-center">
+          <span> {{ property.price }} zł </span>
+        </h1>
+      </div>
+
+      <div class="features-title__container">
+        <h1 class="features-title text-center">Parametry oferty</h1>
+      </div>
+
+      <div class="features-text__container">
+        <div class="features-text__column">
+          <p>Typ nieruchomości: {{ property.type }}</p>
+          <p>Typ transkacji: {{ property.transactionType }}</p>
+          <p>Powierzchnia: {{ property.area }} m<span class="power">2</span></p>
+          <p>Rok budowy: {{ property.year }}</p>
+
+          <p>Nr oferty: {{ property.offer }}</p>
+        </div>
+        <div class="features-text__column">
+          <p>Cena za m<span class="power">2</span> : {{ priceForMetre }} zł</p>
+
+          <p>Liczba pokoi: {{ property.rooms }}</p>
+
+          <p>Piętro: {{ property.floor }}</p>
+        </div>
+      </div>
+
+      <div class="more-features-title__container">
+        <h1 class="more-features-title text-center">Cechy oferty</h1>
+      </div>
+
+      <div
+        class="more-features-text__container"
+        *ngFor="let feature of property.features"
+      >
+        <p class="text-center">{{ feature }}</p>
+      </div>
+    </div>
+  </div>
+</section>

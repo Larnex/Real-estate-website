@@ -1,0 +1,87 @@
+<section class="hero">
+  <h1 class="hero__title">Find Property that are made for you.</h1>
+  <p class="hero__body-text">
+    Eveniet suscipit est, iusto dignissimos distinctio, nam beatae vel omnis
+    eligendi blanditiis odio non. Eius ea natus neque.
+  </p>
+  <button class="btn cta-main">Get Started</button>
+  <div class="achievements flex">
+    <p>
+      1200
+      <span class="more-sign">+</span>
+      <span class="subtext">Property Listed</span>
+    </p>
+    <p>
+      4500
+      <span class="more-sign">+</span>
+      <span class="subtext">Happy Customers</span>
+    </p>
+    <p>
+      240
+      <span class="more-sign">+</span>
+      <span class="subtext">Awards Won</span>
+    </p>
+  </div>
+  <div class="search flex">
+    <p class="search__heading">Search for homes in your budget</p>
+    <form action="#">
+      <input type="text" id="location" placeholder="Location" />
+      <label for="location"><i class="bx bxs-map"></i></label>
+      <input type="text" id="type" placeholder="Type" />
+      <label for="type"><i class="bx bxs-home"></i></label>
+      <input type="text" id="budget" placeholder="Budget" />
+      <label for="budget"><i class="bx bxs-dollar-circle"></i></label>
+      <button class="btn search-btn">Search Now</button>
+    </form>
+  </div>
+</section>
+
+<!-- Properties -->
+
+<section class="popular">
+  <div class="heading flex">
+    <div>
+      <p class="heading-label">Popular</p>
+      <h3 class="sub-heading">Our Popular Residences</h3>
+    </div>
+
+    <a href="#">
+      <div class="explore flex">
+        <p>Explore All</p>
+        <img src="../../../assets/arrow-right.svg" alt="arrow" />
+      </div>
+    </a>
+  </div>
+  <div class="residence-group flex">
+    <div class="residence" *ngFor="let property of properties">
+      <div class="residence-image" (click)="showPropertyDetails(property)">
+        <img src="{{ property.img[0].url }}" alt="residence-image" />
+      </div>
+      <div class="info">
+        <p class="location">
+          <i class="bx bxs-map"></i>
+          {{ property.city }}, {{ property.distriction }}
+        </p>
+        <div class="features flex">
+          <p class="rooms">
+            <i class="bx bxs-bed"></i>
+            {{ property.rooms }} bed
+          </p>
+          <p class="size">
+            <i class="bx bxs-ruler"></i>
+            {{ property.area }} m2
+          </p>
+          <p class="area">
+            <i class="bx bx-area"></i>
+            {{ property.area }} m
+            <span class="power">2</span>
+          </p>
+        </div>
+        <div class="residence-cta flex">
+          <button class="btn">Book Now</button>
+          <p class="price">{{ property.price }} ZŁ</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<header class="flex">
+  <div class="logo">
+    <a href="index.html">
+      <img src="/assets/logo/logo-serumah.svg" alt="logo" />
+    </a>
+  </div>
+  <div class="flex" style="align-items: center">
+    <nav>
+      <ul id="nav-menu" class="nav-menu flex" data-visible="false">
+        <li><a href="#" class="nav-link active">Home</a></li>
+        <li><a href="#" class="nav-link">Property</a></li>
+        <li><a href="#" class="nav-link">About Us</a></li>
+        <li><a href="#" class="nav-link">Agents</a></li>
+      </ul>
+    </nav>
+    <button class="btn contact">Contact</button>
+
+    <button
+      class="nav-toggle"
+      aria-controls="nav-menu"
+      aria-expanded="false"
+      #navToggle
+    >
+      <span class="sr-only">Menu</span>
+    </button>
+  </div>
+</header>
+
+<router-outlet></router-outlet>

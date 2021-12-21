@@ -1,0 +1,84 @@
+.power {
+  position: relative;
+  bottom: 1ex;
+  font-size: 80%;
+}
+
+.main-container {
+  padding: 3rem 1.5rem;
+  margin: 0;
+}
+
+.slider-container {
+  gap: 0.75em;
+  margin: 3rem 0;
+  display: flex;
+}
+
+.property-title {
+  font-size: clamp(var(--fs-500), 8vw, var(--fs-700));
+}
+
+.property-title,
+.property-subtitle {
+  text-align: center;
+}
+
+.property-subtitle,
+.features-title {
+  margin: 1em 0;
+  font-size: clamp(var(--fs-300), 10vw, var(--fs-500));
+}
+
+.price {
+  color: var(--color-primary);
+  margin: 3rem 0;
+
+  span {
+    border: 2px solid var(--color-accent);
+    padding: 10px;
+    border-radius: 3px;
+  }
+}
+
+.features-text__container {
+  padding-left: 0.85rem;
+  margin: 1.5em 0;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+
+  p {
+    font-weight: var(--fw-300);
+    position: relative;
+    margin: 1em 0;
+  }
+}
+
+.more-features-text__container {
+  margin: 1rem;
+  font-weight: var(--fw-500);
+  font-size: clamp(var(--fs-300), 8vw, var(--fs-500));
+}
+
+@media (min-width: 60em) {
+  .main-container {
+    padding: 5rem 4rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 60em) {
+  .property-title,
+  .property-subtitle {
+    text-align: center;
+  }
+
+  .features-text__container {
+    gap: 6em;
+  }
+}
