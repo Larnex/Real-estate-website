@@ -1,18 +1,14 @@
 <section class="body" *ngIf="property">
   <div class="main-container">
     <div class="slider-container">
-      <carousel
-        [objectFit]="'cover'"
-        [cellWidth]="'100%'"
-        [arrowsOutside]="true"
-        [autoplay]="true"
-        [dots]="true"
-        [loop]="true"
-      >
-        <div class="carousel-cell" *ngFor="let image of property.img">
-          <img src="{{ image.url }}" />
-        </div>
-      </carousel>
+      <ngb-carousel *ngIf="property.img">
+        <ng-template ngbSlide *ngFor="let photo of property.img">
+          <div class="picsum-img-wrapper">
+            <img [src]="photo.url" alt="Random first slide" />
+          </div>
+        </ng-template>
+      </ngb-carousel>
+
     </div>
 
     <div class="features-container">
