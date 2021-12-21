@@ -14,8 +14,9 @@ export interface Property {
   offer: string;
   floor: number;
   features: any[];
+  descriptionTitle?: string;
   description: string;
-  agent: Agent[];
+  agent: Agent;
 }
 
 export interface Image {

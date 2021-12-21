@@ -8,7 +8,6 @@
           </div>
         </ng-template>
       </ngb-carousel>
-
     </div>
 
     <div class="features-container">
@@ -61,6 +60,129 @@
         *ngFor="let feature of property.features"
       >
         <p class="text-center">{{ feature }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="description-container flex">
+    <div class="description-body col-sm-7" *ngIf="property.description">
+      <h1 class="title">Opis</h1>
+      <h3 class="subtitle">{{ property.descriptionTitle }}</h3>
+
+      <p class="text">
+        {{ property.description }}
+      </p>
+    </div>
+
+    <div class="contact-body col-sm-5">
+      <div class="form-container" *ngIf="!post; else formInfo" novalidate>
+        <form
+          [formGroup]="formGroup"
+          (ngSubmit)="onSubmit(formGroup.value)"
+          class="form"
+        >
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Imię" formControlName="name" />
+            <mat-error *ngIf="!name.valid && name.touched">
+              {{ titleAlert }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Telefon" formControlName="phone" />
+
+            <mat-error
+              *ngIf="
+                !formGroup.controls['phone'].valid &&
+                formGroup.controls['phone'].touched
+              "
+            >
+              Numer telefonu nie jest poprawny
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <input matInput placeholder="Email" formControlName="email" />
+
+            <mat-error
+              *ngIf="
+                !formGroup.controls['email'].valid &&
+                formGroup.controls['email'].touched
+              "
+            >
+              Email nie jest poprawny
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <textarea
+              matInput
+              placeholder="Wiadomość"
+              formControlName="message"
+            ></textarea>
+
+            <mat-error
+              *ngIf="
+                !formGroup.controls['message'].valid &&
+                formGroup.controls['message'].touched
+              "
+            >
+              Wiadomość nie jest poprawna
+            </mat-error>
+          </mat-form-field>
+
+          <div class="form-element">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              class="button"
+              [disabled]="!formGroup.valid"
+            >
+              Wyślij
+            </button>
+          </div>
+        </form>
+      </div>
+      <ng-template #formInfo>
+        <div class="container">
+          <h1>Dziękujemy za wiadomość. Skontaktujemy się z Tobą wkrótce</h1>
+        </div>
+      </ng-template>
+
+      <div class="agent-container" *ngIf="property.agent">
+        <h1 class="title">Skontaktuj się z agentem</h1>
+
+        <div class="agent-body">
+          <h1 class="agent-name">{{ property.agent.name }}</h1>
+          <h3 class="agent-company">{{ property.agent.agency }}</h3>
+
+          <div class="agent-photo__container">
+            <img
+              src="{{ property.agent.photo }}"
+              alt="Agent"
+              class="agent-photo"
+            />
+          </div>
+
+          <div class="agent-phone__container">
+            <a
+              mat-button
+              href="tel:{{ property.agent.phone }}"
+              class="agent-phone"
+              >{{ property.agent.phone }}</a
+            >
+          </div>
+
+          <div class="agent-email__container">
+            <a
+              mat-button
+              href="mailto:{{ property.agent.email }}"
+              class="agent-email"
+              >{{ property.agent.email }}</a
+            >
+          </div>
+        </div>
       </div>
     </div>
   </div>

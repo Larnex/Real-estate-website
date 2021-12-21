@@ -1,10 +1,14 @@
 import { DataService } from './../../services/data.service';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 import { Image, Property } from 'src/app/interfaces/property';
-
-
 
 @Component({
   selector: 'app-property-details',
@@ -15,11 +19,15 @@ export class PropertyDetailsComponent implements OnInit {
   subscription!: SubscriptionLike | null;
   property!: Property | undefined;
   priceForMetre!: number;
-  activeSliderId!: string;
+  formGroup!: FormGroup;
+  titleAlert: string = 'To pole jest wymagane';
+
+  post: any = '';
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +44,8 @@ export class PropertyDetailsComponent implements OnInit {
           });
       }
     });
+
+    this.createForm();
   }
 
   ngOnDestroy(): void {
@@ -45,10 +55,24 @@ export class PropertyDetailsComponent implements OnInit {
     }
   }
 
-  cycleToSlide(photo: Image) {
-    console.log(photo.id - 1);
-    let slideId = photo.id - 1;
+  createForm() {
+    let emailregex: RegExp =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let phoneregex: RegExp = /^(\+\d{1,3}[- ]?)?\d{9}$/;
 
-    this.activeSliderId = 'ngb-slide-' + slideId;
+    this.formGroup = this.formBuilder.group({
+      name: [null, Validators.required],
+      phone: [null, [Validators.pattern(phoneregex)]],
+      email: [null, [Validators.required, Validators.pattern(emailregex)]],
+      message: [null, [Validators.required, Validators.minLength(5)]],
+    });
+  }
+
+  get name() {
+    return this.formGroup.get('name') as FormControl;
+  }
+
+  onSubmit(post: any) {
+    this.post = post;
   }
 }
