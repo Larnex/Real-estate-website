@@ -1,11 +1,11 @@
 /* hero section */
 
 .hero {
-  background-color: hsl(var(--clr-accent) / 0.15);
   padding: 3rem 1.5rem;
   background-image: url("../../../assets/bg-hero.png");
   background-repeat: no-repeat;
   background-position: right bottom;
+  background-color: hsl(207 82% 71% / 0.15);
 }
 
 .hero__title {
@@ -41,6 +41,16 @@
   font-weight: var(--fw-600);
   color: var(--color-primary);
   opacity: 0.65;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.5em 1.75em;
+  transition: 100ms ease-in-out;
 }
 
 @media (min-width: 45em) {
@@ -85,8 +95,12 @@
   padding: 0.75em;
   margin-bottom: 1em;
   width: 100%;
+  color: black;
 }
 
+.search input::placeholder {
+  color: var(--color-primary);
+}
 .search input:focus-within {
   outline: 2px solid var(--color-accent);
 }
@@ -174,11 +188,6 @@ input[type="text"]:focus-within + label {
   gap: 2em;
 }
 
-.residence {
-  max-width: 30rem;
-  box-shadow: 0 0 10px 2px var(--color-primary);
-}
-
 .info {
   background-color: white;
   padding: 1.5em;
@@ -223,10 +232,13 @@ input[type="text"]:focus-within + label {
   font-weight: var(--fw-600);
 }
 
+carousel {
+  margin: 3rem 0;
+}
+
 @media (min-width: 45em) {
   .popular {
     padding: 0 4rem 5rem;
-    margin-top: -6em;
   }
 
   .popular {

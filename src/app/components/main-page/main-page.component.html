@@ -38,7 +38,7 @@
 
 <!-- Properties -->
 
-<section class="popular">
+<section class="popular" *ngIf="properties">
   <div class="heading flex">
     <div>
       <p class="heading-label">Popular</p>
@@ -52,36 +52,44 @@
       </div>
     </a>
   </div>
-  <div class="residence-group flex">
-    <div class="residence" *ngFor="let property of properties">
-      <div class="residence-image" (click)="showPropertyDetails(property)">
-        <img src="{{ property.img[0].url }}" alt="residence-image" />
-      </div>
-      <div class="info">
-        <p class="location">
-          <i class="bx bxs-map"></i>
-          {{ property.city }}, {{ property.distriction }}
-        </p>
-        <div class="features flex">
-          <p class="rooms">
-            <i class="bx bxs-bed"></i>
-            {{ property.rooms }} bed
-          </p>
-          <p class="size">
-            <i class="bx bxs-ruler"></i>
-            {{ property.area }} m2
-          </p>
-          <p class="area">
-            <i class="bx bx-area"></i>
-            {{ property.area }} m
-            <span class="power">2</span>
-          </p>
+
+  <carousel
+    [cellsToShow]="cellToShow"
+    [height]="carouselHeight"
+    [arrowsTheme]="'dark'"
+    [margin]="20"
+  >
+    <div class="carousel-cell" *ngFor="let property of properties">
+      <div class="residence" #carouselCell>
+        <div class="residence-image" (click)="showPropertyDetails(property)">
+          <img src="{{ property.img[0].url }}" alt="residence-image" />
         </div>
-        <div class="residence-cta flex">
-          <button class="btn">Book Now</button>
-          <p class="price">{{ property.price }} ZŁ</p>
+        <div class="info">
+          <p class="location">
+            <i class="bx bxs-map"></i>
+            {{ property.city }}, {{ property.distriction }}
+          </p>
+          <div class="features flex">
+            <p class="rooms">
+              <i class="bx bxs-bed"></i>
+              {{ property.rooms }} bed
+            </p>
+            <p class="size">
+              <i class="bx bxs-ruler"></i>
+              {{ property.area }} m2
+            </p>
+            <p class="area">
+              <i class="bx bx-area"></i>
+              {{ property.area }} m
+              <span class="power">2</span>
+            </p>
+          </div>
+          <div class="residence-cta flex">
+            <button class="btn">Book Now</button>
+            <p class="price">{{ property.price }} ZŁ</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </carousel>
 </section>
