@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { AdminModule } from './modules/admin/admin.module';
+import { PropertiesComponent } from './components/properties/properties.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
         component: MainPageComponent,
       },
       { path: 'property/:id', component: PropertyDetailsComponent },
+      { path: 'properties', component: PropertiesComponent },
     ],
   },
   {

@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
 import { Property } from 'src/app/interfaces/property';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-main-page',
@@ -27,29 +28,34 @@ export class MainPageComponent implements OnInit, OnDestroy {
   intervalId!: any;
 
   public carouselHeight!: number;
-
   public cellToShow!: number;
 
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(
+    private router: Router,
+    public filter: FilterService,
+    private elem: ElementRef
+  ) {}
 
   ngOnInit(): void {
-    this.subscription = this.dataService
-      .getProperties()
-      .subscribe((properties) => {
-        this.properties = properties;
-      });
-
+    // Make carousel responsive
     if (this.width > 1028) {
       this.carouselHeight = this.width * 0.35;
     } else if (this.width > 768) {
       this.carouselHeight = this.width * 0.45;
-    } else  {
+    } else {
       this.carouselHeight = this.width * 0.9;
     }
 
     this.responsiveCarousel();
   }
 
+  // Revert carousel when filtering apply
+  onSelectChange() {
+    let carousel = this.elem.nativeElement.querySelector('.carousel-cells');
+    carousel.style.transform = 'translateX(0px)';
+  }
+
+  // Responsive carousel on resize
   onWindowResize(event: any) {
     this.width = event.target.innerWidth;
     this.carouselHeight = this.cellHeight.nativeElement.clientHeight + 30;
@@ -74,6 +80,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Redirect to property details page on "szczegóły" button click
   showPropertyDetails(property: Property): void {
     this.selectedProperty = property;
     this.router.navigate(['/property', this.selectedProperty.id]);

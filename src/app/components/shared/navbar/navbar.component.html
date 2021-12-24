@@ -7,10 +7,29 @@
   <div class="flex" style="align-items: center">
     <nav>
       <ul id="nav-menu" class="nav-menu flex" data-visible="false">
-        <li><a href="#" class="nav-link active">Home</a></li>
-        <li><a href="#" class="nav-link">Property</a></li>
-        <li><a href="#" class="nav-link">About Us</a></li>
-        <li><a href="#" class="nav-link">Agents</a></li>
+        <li>
+          <a
+            class="nav-link"
+            [routerLink]="['/']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="active"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            [routerLink]="['/properties']"
+            routerLinkActive="active"
+            >Nieruchomości</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" routerLinkActive="active">About Us</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLinkActive="active">Agents</a>
+        </li>
       </ul>
     </nav>
     <button class="btn contact">Contact</button>

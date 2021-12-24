@@ -53,25 +53,6 @@
   transition: 100ms ease-in-out;
 }
 
-@media (min-width: 45em) {
-  .hero {
-    height: 100vh;
-    padding: 5rem 0 5rem 4rem;
-    background-image: url("../../../assets/bg-hero.png");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-  }
-
-  .achievements {
-    margin: 3em 0;
-    justify-content: flex-start;
-  }
-
-  .achievements p {
-    margin-right: 2em;
-  }
-}
-
 /* search box */
 
 .search {
@@ -87,20 +68,17 @@
   margin-bottom: 1.5em;
 }
 
-.search input {
+.search mat-select {
   outline: none;
   border: none;
-  background-color: var(--color-primary);
-  opacity: 0.085;
-  padding: 0.75em;
   margin-bottom: 1em;
   width: 100%;
-  color: black;
 }
 
 .search input::placeholder {
-  color: var(--color-primary);
+  color: black;
 }
+
 .search input:focus-within {
   outline: 2px solid var(--color-accent);
 }
@@ -114,46 +92,12 @@
 label {
   display: none;
   font-size: var(--fs-500);
-  color: var(--color-primary);
-  opacity: 0.5;
+  color: black;
+  opacity: 1;
 }
 
 input[type="text"]:focus-within + label {
-  color: var(--color-primary);
-}
-
-@media (min-width: 45em) {
-  .hero {
-    position: relative;
-  }
-
-  .search {
-    padding: 2.5em 2em;
-    position: absolute;
-    bottom: -5rem;
-    right: 0;
-    left: 0;
-    margin-inline: 4rem;
-  }
-
-  form {
-    display: flex;
-    align-items: center;
-  }
-
-  .search .search-btn {
-    margin-top: 0;
-  }
-
-  .search input {
-    margin-right: 1vmin;
-    margin-bottom: 0;
-  }
-
-  label {
-    display: block;
-    transform: translate(-200%, 10%);
-  }
+  color: black;
 }
 
 /* popular section */
@@ -186,6 +130,14 @@ input[type="text"]:focus-within + label {
   flex-direction: column;
   align-items: center;
   gap: 2em;
+}
+
+.residence-image img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .info {
@@ -237,6 +189,57 @@ carousel {
 }
 
 @media (min-width: 45em) {
+  .search {
+    padding: 2.5em 2em;
+    position: absolute;
+    bottom: -5rem;
+    right: 0;
+    left: 0;
+    margin-inline: 4rem;
+  }
+
+  .form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .search .search-btn {
+    margin-top: 0;
+  }
+
+  .search mat-form-field {
+    width: 100%;
+    margin: 0 20px;
+  }
+
+  .search mat-select {
+    margin-right: 1vmin;
+    margin-bottom: 0;
+  }
+
+  label {
+    display: block;
+    transform: translate(-200%, 10%);
+  }
+  .hero {
+    height: 100vh;
+    padding: 5rem 0 5rem 4rem;
+    background-image: url("../../../assets/bg-hero.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    position: relative;
+  }
+
+  .achievements {
+    margin: 3em 0;
+    justify-content: flex-start;
+  }
+
+  .achievements p {
+    margin-right: 2em;
+  }
+
   .popular {
     padding: 0 4rem 5rem;
   }
@@ -247,5 +250,12 @@ carousel {
 
   .residence-group {
     flex-direction: row;
+  }
+}
+
+@media (max-width: 60em) {
+  .form {
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -21,6 +21,7 @@ import { PropertyDetailsComponent } from './components/property-details/property
 
 // Angular Material Form
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { PropertiesComponent } from './components/properties/properties.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     NavbarComponent,
     MainPageComponent,
     PropertyDetailsComponent,
+    PropertiesComponent,
   ],
   imports: [
     BrowserModule,
