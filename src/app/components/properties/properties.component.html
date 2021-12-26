@@ -1,1 +1,241 @@
-<p>properties works!</p>
+<section class="properties-body">
+  <div class="search flex">
+    <p class="search__heading">Wyszukiwarka Nieruchomości</p>
+    <div class="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Miasto</mat-label>
+        <mat-select
+          [(ngModel)]="this.filter.city"
+          (selectionChange)="this.filter.filterExact('city', this.filter.city)"
+        >
+          <mat-option value="any">Dowolne</mat-option>
+          <mat-option value="Gdańsk">Gdańsk</mat-option>
+          <mat-option value="Sopot">Sopot</mat-option>
+          <mat-option value="Gdynia">Gdynia</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Typ Nieruchomości</mat-label>
+        <mat-select
+          [(ngModel)]="this.filter.type"
+          (selectionChange)="this.filter.filterExact('type', this.filter.type)"
+        >
+          <mat-option value="any">Dowolny</mat-option>
+          <mat-option value="Dom">Dom</mat-option>
+          <mat-option value="Działka">Działka</mat-option>
+          <mat-option value="Mieszkanie">Mieszkanie</mat-option>
+          <mat-option value="Komercyjny">Komercyjny</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label> Typ Transakcji </mat-label>
+        <mat-select
+          [(ngModel)]="this.filter.transactionType"
+          (selectionChange)="
+            this.filter.filterExact(
+              'transactionType',
+              this.filter.transactionType
+            )
+          "
+        >
+          <mat-option value="any">Dowolny</mat-option>
+          <mat-option value="Wynajem">Wynajem</mat-option>
+          <mat-option value="Sprzedaż">Sprzedaż</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="buttons-container">
+      <button class="btn" (click)="displayFiltering()" #filters>WIĘCEJ</button>
+      <button class="btn" (click)="this.filter.removeAllFilters()">
+        WYCZYŚĆ
+      </button>
+    </div>
+    <div class="additional-filter__container">
+      <div class="filters" *ngIf="additionalFilters">
+        <div class="filter-container">
+          <h4 class="filter-title">Cena (PLN)</h4>
+          <div class="price-filter two-filters">
+            <mat-form-field appearance="fill">
+              <mat-label>od</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.priceStart"
+                (ngModelChange)="
+                  this.filter.filterMoreThan('price', this.filter.priceStart)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>do</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.priceEnd"
+                (ngModelChange)="
+                  this.filter.filterLessThan('price', this.filter.priceEnd)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="filter-container">
+          <h4 class="filter-title">Powierzchnia (mkw.)</h4>
+          <div class="area-filter two-filters">
+            <mat-form-field appearance="fill">
+              <mat-label> od</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.areaStart"
+                (ngModelChange)="
+                  this.filter.filterMoreThan('area', this.filter.areaStart)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>do</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.areaEnd"
+                (ngModelChange)="
+                  this.filter.filterLessThan('area', this.filter.areaEnd)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="filter-container">
+          <h4 class="filter-title">Piętro</h4>
+          <div class="floor-filter two-filters">
+            <mat-form-field appearance="fill">
+              <mat-label> od</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.floorStart"
+                (ngModelChange)="
+                  this.filter.filterMoreThan('floor', this.filter.floorStart)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>do</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.floorEnd"
+                (ngModelChange)="
+                  this.filter.filterLessThan('floor', this.filter.floorEnd)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="filter-container">
+          <h4 class="filter-title">Rok Budowy</h4>
+          <div class="year-filter two-filters">
+            <mat-form-field appearance="fill">
+              <mat-label> od</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.yearStart"
+                (ngModelChange)="
+                  this.filter.filterMoreThan('year', this.filter.yearStart)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>do</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.yearEnd"
+                (ngModelChange)="
+                  this.filter.filterLessThan('year', this.filter.yearEnd)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="filter-container">
+          <h4 class="filter-title">Liczba Pokoi</h4>
+          <div class="rooms-filter two-filters">
+            <mat-form-field appearance="fill">
+              <mat-label> od</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.roomsStart"
+                (ngModelChange)="
+                  this.filter.filterMoreThan('rooms', this.filter.roomsStart)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>do</mat-label>
+              <input
+                matInput
+                [(ngModel)]="this.filter.roomsEnd"
+                (ngModelChange)="
+                  this.filter.filterLessThan('rooms', this.filter.roomsEnd)
+                "
+                numbersOnly
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="properties-container">
+      <div class="properties-grid">
+        <div
+          class="carousel-cell"
+          *ngFor="let property of this.filter.filteredProperties"
+        >
+          <div class="residence">
+            <div class="residence-image">
+              <img src="{{ property.img[0].url }}" alt="residence-image" />
+            </div>
+            <div class="info">
+              <p class="location">
+                {{ property.city }}, {{ property.distriction }}
+              </p>
+              <div class="features flex">
+                <p class="rooms">{{ property.rooms }} bed</p>
+                <p class="size">
+                  <i class="bx bxs-ruler"></i>
+                  {{ property.area }} m2
+                </p>
+                <p class="area">
+                  {{ property.area }} m
+                  <span class="power">2</span>
+                </p>
+              </div>
+              <div class="residence-cta flex">
+                <button class="btn" (click)="showPropertyDetails(property)">
+                  SZCZEGÓŁY
+                </button>
+                <p class="price">{{ property.price }} ZŁ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

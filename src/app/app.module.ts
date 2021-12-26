@@ -22,6 +22,7 @@ import { PropertyDetailsComponent } from './components/property-details/property
 // Angular Material Form
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PropertiesComponent } from './components/properties/properties.component';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PropertiesComponent } from './components/properties/properties.componen
     MainPageComponent,
     PropertyDetailsComponent,
     PropertiesComponent,
+    NumbersOnlyDirective,
   ],
   imports: [
     BrowserModule,
