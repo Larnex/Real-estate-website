@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { AdminModule } from './modules/admin/admin.module';
 import { PropertiesComponent } from './components/properties/properties.component';
 
 const routes: Routes = [
@@ -17,12 +16,17 @@ const routes: Routes = [
       },
       { path: 'property/:id', component: PropertyDetailsComponent },
       { path: 'properties', component: PropertiesComponent },
+      {
+        path: 'login',
+        loadChildren: () =>
+          import('./modules/user/user.module').then((m) => m.UserModule),
+      },
     ],
   },
   {
     path: 'admin',
     loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => AdminModule),
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
   },
 ];
 

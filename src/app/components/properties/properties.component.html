@@ -5,8 +5,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Miasto</mat-label>
         <mat-select
-          [(ngModel)]="this.filter.city"
-          (selectionChange)="this.filter.filterExact('city', this.filter.city)"
+          [(ngModel)]="filter.city"
+          (selectionChange)="filter.filterExact('city', filter.city)"
         >
           <mat-option value="any">Dowolne</mat-option>
           <mat-option value="Gdańsk">Gdańsk</mat-option>
@@ -18,8 +18,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Typ Nieruchomości</mat-label>
         <mat-select
-          [(ngModel)]="this.filter.type"
-          (selectionChange)="this.filter.filterExact('type', this.filter.type)"
+          [(ngModel)]="filter.type"
+          (selectionChange)="filter.filterExact('type', filter.type)"
         >
           <mat-option value="any">Dowolny</mat-option>
           <mat-option value="Dom">Dom</mat-option>
@@ -32,12 +32,9 @@
       <mat-form-field appearance="fill">
         <mat-label> Typ Transakcji </mat-label>
         <mat-select
-          [(ngModel)]="this.filter.transactionType"
+          [(ngModel)]="filter.transactionType"
           (selectionChange)="
-            this.filter.filterExact(
-              'transactionType',
-              this.filter.transactionType
-            )
+            filter.filterExact('transactionType', filter.transactionType)
           "
         >
           <mat-option value="any">Dowolny</mat-option>
@@ -48,9 +45,7 @@
     </div>
     <div class="buttons-container">
       <button class="btn" (click)="displayFiltering()" #filters>WIĘCEJ</button>
-      <button class="btn" (click)="this.filter.removeAllFilters()">
-        WYCZYŚĆ
-      </button>
+      <button class="btn" (click)="filter.removeAllFilters()">WYCZYŚĆ</button>
     </div>
     <div class="additional-filter__container">
       <div class="filters" *ngIf="additionalFilters">
@@ -61,9 +56,9 @@
               <mat-label>od</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.priceStart"
+                [(ngModel)]="filter.priceStart"
                 (ngModelChange)="
-                  this.filter.filterMoreThan('price', this.filter.priceStart)
+                  filter.filterMoreThan('price', filter.priceStart)
                 "
                 numbersOnly
               />
@@ -73,9 +68,9 @@
               <mat-label>do</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.priceEnd"
+                [(ngModel)]="filter.priceEnd"
                 (ngModelChange)="
-                  this.filter.filterLessThan('price', this.filter.priceEnd)
+                  filter.filterLessThan('price', filter.priceEnd)
                 "
                 numbersOnly
               />
@@ -90,9 +85,9 @@
               <mat-label> od</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.areaStart"
+                [(ngModel)]="filter.areaStart"
                 (ngModelChange)="
-                  this.filter.filterMoreThan('area', this.filter.areaStart)
+                  filter.filterMoreThan('area', filter.areaStart)
                 "
                 numbersOnly
               />
@@ -102,10 +97,8 @@
               <mat-label>do</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.areaEnd"
-                (ngModelChange)="
-                  this.filter.filterLessThan('area', this.filter.areaEnd)
-                "
+                [(ngModel)]="filter.areaEnd"
+                (ngModelChange)="filter.filterLessThan('area', filter.areaEnd)"
                 numbersOnly
               />
             </mat-form-field>
@@ -119,9 +112,9 @@
               <mat-label> od</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.floorStart"
+                [(ngModel)]="filter.floorStart"
                 (ngModelChange)="
-                  this.filter.filterMoreThan('floor', this.filter.floorStart)
+                  filter.filterMoreThan('floor', filter.floorStart)
                 "
                 numbersOnly
               />
@@ -131,9 +124,9 @@
               <mat-label>do</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.floorEnd"
+                [(ngModel)]="filter.floorEnd"
                 (ngModelChange)="
-                  this.filter.filterLessThan('floor', this.filter.floorEnd)
+                  filter.filterLessThan('floor', filter.floorEnd)
                 "
                 numbersOnly
               />
@@ -148,9 +141,9 @@
               <mat-label> od</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.yearStart"
+                [(ngModel)]="filter.yearStart"
                 (ngModelChange)="
-                  this.filter.filterMoreThan('year', this.filter.yearStart)
+                  filter.filterMoreThan('year', filter.yearStart)
                 "
                 numbersOnly
               />
@@ -160,10 +153,8 @@
               <mat-label>do</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.yearEnd"
-                (ngModelChange)="
-                  this.filter.filterLessThan('year', this.filter.yearEnd)
-                "
+                [(ngModel)]="filter.yearEnd"
+                (ngModelChange)="filter.filterLessThan('year', filter.yearEnd)"
                 numbersOnly
               />
             </mat-form-field>
@@ -177,9 +168,9 @@
               <mat-label> od</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.roomsStart"
+                [(ngModel)]="filter.roomsStart"
                 (ngModelChange)="
-                  this.filter.filterMoreThan('rooms', this.filter.roomsStart)
+                  filter.filterMoreThan('rooms', filter.roomsStart)
                 "
                 numbersOnly
               />
@@ -189,9 +180,9 @@
               <mat-label>do</mat-label>
               <input
                 matInput
-                [(ngModel)]="this.filter.roomsEnd"
+                [(ngModel)]="filter.roomsEnd"
                 (ngModelChange)="
-                  this.filter.filterLessThan('rooms', this.filter.roomsEnd)
+                  filter.filterLessThan('rooms', filter.roomsEnd)
                 "
                 numbersOnly
               />
@@ -205,7 +196,7 @@
       <div class="properties-grid">
         <div
           class="carousel-cell"
-          *ngFor="let property of this.filter.filteredProperties"
+          *ngFor="let property of filter.filteredProperties"
         >
           <div class="residence">
             <div class="residence-image">

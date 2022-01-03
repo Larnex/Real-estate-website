@@ -33,18 +33,15 @@ export class PropertyDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       if (params['id'] !== undefined) {
-        let id = +params['id'];
-
+        let id = params['id'];
         this.subscription = this.dataService
           .getProperty(id)
           .subscribe((property) => {
             this.property = property;
-
             this.priceForMetre = property!.price / property!.area;
           });
       }
     });
-
     this.createForm();
   }
 

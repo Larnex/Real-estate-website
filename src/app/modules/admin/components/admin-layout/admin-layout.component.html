@@ -19,9 +19,17 @@
         <li>
           <a
             class="nav-link"
-            [routerLink]="['/properties']"
+            [routerLink]="['/admin', 'dashboard']"
             routerLinkActive="active"
-            >Nieruchomości</a
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            [routerLink]="['/admin', 'add']"
+            routerLinkActive="active"
+            >Add Property</a
           >
         </li>
       </ul>

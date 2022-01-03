@@ -28,9 +28,9 @@
       <mat-form-field appearance="fill">
         <mat-label>Miasto</mat-label>
         <mat-select
-          [(ngModel)]="this.filter.city"
+          [(ngModel)]="filter.city"
           (selectionChange)="
-            this.filter.filterExact('city', this.filter.city); onSelectChange()
+            filter.filterExact('city', filter.city); onSelectChange()
           "
         >
           <mat-option value="any">Dowolne</mat-option>
@@ -43,9 +43,9 @@
       <mat-form-field appearance="fill">
         <mat-label>Typ Nieruchomości</mat-label>
         <mat-select
-          [(ngModel)]="this.filter.type"
+          [(ngModel)]="filter.type"
           (selectionChange)="
-            this.filter.filterExact('type', this.filter.type); onSelectChange()
+            filter.filterExact('type', filter.type); onSelectChange()
           "
         >
           <mat-option value="any">Dowolny</mat-option>
@@ -59,12 +59,9 @@
       <mat-form-field appearance="fill">
         <mat-label> Typ Transakcji </mat-label>
         <mat-select
-          [(ngModel)]="this.filter.transactionType"
+          [(ngModel)]="filter.transactionType"
           (selectionChange)="
-            this.filter.filterExact(
-              'transactionType',
-              this.filter.transactionType
-            );
+            filter.filterExact('transactionType', filter.transactionType);
             onSelectChange()
           "
         >
@@ -79,7 +76,7 @@
 
 <!-- Properties -->
 
-<section class="popular" *ngIf="this.filter.filteredProperties">
+<section class="popular" *ngIf="filter.filteredProperties">
   <div class="heading flex">
     <div>
       <p class="heading-label">Popular</p>
@@ -103,7 +100,7 @@
   >
     <div
       class="carousel-cell"
-      *ngFor="let property of this.filter.filteredProperties"
+      *ngFor="let property of filter.filteredProperties"
     >
       <div class="residence" #carouselCell>
         <div class="residence-image">

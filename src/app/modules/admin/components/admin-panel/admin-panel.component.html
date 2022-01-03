@@ -1,0 +1,47 @@
+<div class="properties">
+  <h2 class="text-center">Dashboard</h2>
+
+  <table *ngIf="properties$ | async as properties; else loading">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Area</th>
+        <th>Number of Offer</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let property of properties; let i = index">
+        <td>{{ property.id }}</td>
+        <td>{{ property.city }}, {{ property.distriction }}</td>
+        <td>{{ property.year }}</td>
+        <td>{{ property.area }}</td>
+        <td>{{ property.offer }}</td>
+        <td>
+          <button
+            class="btn btn-dark"
+            [routerLink]="['/admin', 'property', property.id, 'edit']"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="removeProperty(property.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #loading>
+    <p
+      class="loading"
+      style="font-size: 8rem; text-align: center; margin-top: 12.5%"
+    >
+      Loading...
+    </p>
+  </ng-template>
+</div>

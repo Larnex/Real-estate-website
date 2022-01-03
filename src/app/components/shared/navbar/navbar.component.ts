@@ -1,3 +1,5 @@
+import { NavbarService } from './../../../services/navbar.service';
+import { AuthService } from './../../../services/auth.service';
 import { Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
@@ -5,8 +7,12 @@ import { Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
-  constructor(private elementRef: ElementRef) {}
+export class NavbarComponent implements OnInit, AfterViewInit {
+  constructor(
+    private elementRef: ElementRef,
+    public auth: AuthService,
+    private navbar: NavbarService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -15,16 +21,6 @@ export class NavbarComponent implements OnInit {
       this.elementRef.nativeElement.querySelector('.nav-toggle');
     const navMenu = this.elementRef.nativeElement.querySelector('.nav-menu');
 
-    navToggle.addEventListener('click', () => {
-      const visibility = navMenu.getAttribute('data-visible');
-
-      if (visibility === 'false') {
-        navMenu.setAttribute('data-visible', true);
-        navToggle.setAttribute('aria-expanded', true);
-      } else {
-        navMenu.setAttribute('data-visible', false);
-        navToggle.setAttribute('aria-expanded', false);
-      }
-    });
+    this.navbar.navbarToggle(navToggle, navMenu);
   }
 }

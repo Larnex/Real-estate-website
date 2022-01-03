@@ -1,0 +1,198 @@
+<div class="example-container">
+  <div class="form-container">
+    <h1>Add Property</h1>
+    <form [formGroup]="form" (submit)="formSubmit()" *ngIf="this.form">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Hidden</mat-label>
+        <mat-select formControlName="hidden">
+          <mat-option [value]="false">False</mat-option>
+          <mat-option [value]="true">True</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Subtitle</mat-label>
+        <input matInput formControlName="subtitle" />
+      </mat-form-field>
+
+      <div formArrayName="img" *ngIf="Images">
+        <h4>Image</h4>
+
+        <div *ngFor="let image of Images.controls; let i = index">
+          <div formGroupName="{{ i }}" class="image-form">
+            <div class="form-group">
+              <input
+                type="file"
+                id="{{ i }}"
+                class="image"
+                (change)="this.upload($event, '/properties', i)"
+              />
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Image Name</mat-label>
+                <input matInput formControlName="name" />
+              </mat-form-field>
+
+              <img src="{{ Images.value[i].url }}" class="img" alt="" />
+            </div>
+          </div>
+
+          <div class="add-icon">
+            <!-- <a class="btn add-images-btn" (click)="addMoreImages(i)">+</a> -->
+
+            <fa-icon
+              *ngIf="i == 0"
+              [icon]="faPlusCircle"
+              (click)="addMoreImages(i)"
+            ></fa-icon>
+
+            <fa-icon
+              *ngIf="i !== 0"
+              [icon]="faMinusCircle"
+              (click)="addMoreImages(i)"
+            ></fa-icon>
+          </div>
+        </div>
+      </div>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="Mieszkanie">Mieszkanie</mat-option>
+          <mat-option value="Dom">Dom</mat-option>
+          <mat-option value="Komercyjny">Komercyjny</mat-option>
+          <mat-option value="Działka">Działka</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>City</mat-label>
+        <mat-select formControlName="city">
+          <mat-option value="Gdańsk">Gdańsk</mat-option>
+          <mat-option value="Gdynia">Gdynia</mat-option>
+          <mat-option value="Sopot">Sopot</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Distriction</mat-label>
+        <input matInput formControlName="distriction" />
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Transaction type</mat-label>
+        <mat-select formControlName="transactionType">
+          <mat-option value="Wynajem">Wynajem</mat-option>
+          <mat-option value="Sprzedaż">Sprzedaż</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Rooms</mat-label>
+        <input matInput type="number" formControlName="rooms" numbersOnly />
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Area</mat-label>
+        <input matInput type="number" formControlName="area" numbersOnly />
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" formControlName="price" numbersOnly />
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Year</mat-label>
+        <input matInput type="number" formControlName="year" numbersOnly />
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Nr Offer</mat-label>
+        <input matInput formControlName="offer" />
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Floor</mat-label>
+        <input matInput type="number" formControlName="floor" numbersOnly />
+      </mat-form-field>
+
+      <div class="separate features">
+        <h4>
+          Features
+          <span style="font-size: 12px; vertical-align: middle"
+            >(type value and press enter to add to features)</span
+          >
+        </h4>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Features</mat-label>
+
+          <input
+            matInput
+            formArrayName="features"
+            (keydown.enter)="addToFeaturesArray($event)"
+          />
+        </mat-form-field>
+        <div class="features-list">
+          <ul>
+            <li *ngFor="let feature of this.form.value.features; let i = index">
+              {{ feature }}
+              <button
+                class="btn btn-danger btn-feature"
+                (click)="this.form.value.features.splice(i, 1)"
+              >
+                x
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput cdkTextareaAutosize formControlName="description">
+        </textarea>
+      </mat-form-field>
+
+      <div class="agent-form separate" formGroupName="agent">
+        <h4>Agent</h4>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Agent Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Agency</mat-label>
+          <input matInput formControlName="agency" />
+        </mat-form-field>
+
+        <!-- (change)="this.uploadImages('properties/agents', $event)" -->
+        <input
+          type="file"
+          class="image"
+          (change)="upload($event, 'properties/agents')"
+        />
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Agent Phone</mat-label>
+          <input matInput formControlName="phone" numbersOnly />
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Agent Email</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+    <br />
+
+    <!-- <pre>{{ this.form.invalid | json }}</pre> -->
+  </div>
+</div>

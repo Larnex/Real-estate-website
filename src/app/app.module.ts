@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +22,7 @@ import { PropertyDetailsComponent } from './components/property-details/property
 // Angular Material Form
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PropertiesComponent } from './components/properties/properties.component';
-import { NumbersOnlyDirective } from './directives/numbers-only.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,6 @@ import { NumbersOnlyDirective } from './directives/numbers-only.directive';
     MainPageComponent,
     PropertyDetailsComponent,
     PropertiesComponent,
-    NumbersOnlyDirective,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +43,7 @@ import { NumbersOnlyDirective } from './directives/numbers-only.directive';
     FormsModule,
     MatFormFieldModule,
     MaterialExampleModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

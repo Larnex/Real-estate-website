@@ -1,3 +1,4 @@
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import { NgModule } from '@angular/core';
 import { A11yModule } from '@angular/cdk/a11y';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
@@ -43,8 +44,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
+  declarations: [NumbersOnlyDirective],
   exports: [
     A11yModule,
     CdkAccordionModule,
@@ -66,6 +70,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
+    MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
     MatInputModule,
@@ -91,6 +96,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     OverlayModule,
     PortalModule,
     ScrollingModule,
+    NumbersOnlyDirective,
+    FontAwesomeModule,
   ],
 })
 export class MaterialExampleModule {}

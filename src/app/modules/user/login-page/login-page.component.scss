@@ -1,0 +1,13 @@
+.mat-card:not([class*="mat-elevation-z"]) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}

@@ -38,9 +38,13 @@ export class FilterService {
 
   constructor(private dataService: DataService) {
     this.dataService.getProperties().subscribe((properties) => {
+      console.log('properties:', properties);
       this.properties = properties;
       this.applyFilter();
     });
+
+    // this.properties = this.dataService.getProperties();
+    // this.applyFilter();
   }
 
   public applyFilter() {

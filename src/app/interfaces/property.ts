@@ -1,5 +1,6 @@
 export interface Property {
-  id: number;
+  id: string;
+  hidden: boolean;
   title: string;
   subtitle: string;
   img: Image[];
@@ -13,7 +14,7 @@ export interface Property {
   year: number;
   offer: string;
   floor: number;
-  features: any[];
+  features: string[];
   descriptionTitle?: string;
   description: string;
   agent: Agent;
@@ -21,7 +22,7 @@ export interface Property {
 
 export interface Image {
   url: string;
-  id: number;
+  id?: number;
   name?: string;
 }
 
@@ -29,6 +30,6 @@ export interface Agent {
   name: string;
   agency: string;
   photo: string;
-  phone: number;
+  phone: string;
   email: string;
 }
