@@ -1,4 +1,4 @@
-import { NavbarService } from './../../../../services/navbar.service';
+import { AnimationService } from '../../../../services/animation.service';
 import { AuthService } from './../../../../services/auth.service';
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 
@@ -13,7 +13,7 @@ import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 export class AdminLayoutComponent implements OnInit, AfterViewInit {
   constructor(
     public auth: AuthService,
-    private navbar: NavbarService,
+    private animationService: AnimationService,
     private elementRef: ElementRef
   ) {}
 
@@ -24,6 +24,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.querySelector('.nav-toggle');
     const navMenu = this.elementRef.nativeElement.querySelector('.nav-menu');
 
-    this.navbar.navbarToggle(navToggle, navMenu);
+    this.animationService.navbarToggle(navToggle, navMenu);
   }
 }

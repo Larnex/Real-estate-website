@@ -1,39 +1,45 @@
-<section class="body" *ngIf="property">
-  <div class="main-container">
-    <div class="slider-container">
-      <ngb-carousel *ngIf="property.img">
-        <ng-template ngbSlide *ngFor="let photo of property.img">
-          <div class="picsum-img-wrapper">
-            <img [src]="photo.url" alt="Random first slide" />
-          </div>
-        </ng-template>
-      </ngb-carousel>
-    </div>
-
-    <div class="features-container">
-      <div class="title">
-        <h1 class="property-title">
-          {{ property.city }}, {{ property.distriction }},
-          {{ property.area }} m<span class="power">2</span>,
-          {{ property.rooms }}
-          <span *ngIf="property.rooms > 1">pokoje</span>
-          <span *ngIf="property.rooms === 1">pokój</span>
-        </h1>
-
-        <h3 class="property-subtitle">{{ property.subtitle }}</h3>
+<div class="flex">
+  <!-- <div class="col-sm-1"></div> -->
+  <section class="body col-sm-11" *ngIf="property">
+    <div class="main-container">
+      <div class="slider-container col-md-7 col-xs-12 mobile-height">
+        <ngb-carousel *ngIf="property.img">
+          <ng-template ngbSlide *ngFor="let photo of property.img">
+            <div class="picsum-img-wrapper">
+              <img [src]="photo.url" alt="Random first slide" />
+            </div>
+          </ng-template>
+        </ngb-carousel>
       </div>
 
-      <div class="price">
-        <h1 class="property-price text-center">
-          <span> {{ property.price }} zł </span>
-        </h1>
-      </div>
+      <div
+        class="description-container col-sm-12 col-xs-12 col-md-5 param-container"
+      >
+        <div class="title">
+          <h1 class="property-title">
+            {{ property.city }}, {{ property.distriction }},
+            {{ property.area }} m<span class="power">2</span>,
+            {{ property.rooms }}
+            <span *ngIf="property.rooms > 1">pokoje</span>
+            <span *ngIf="property.rooms === 1">pokój</span>
+          </h1>
 
-      <div class="features-title__container">
-        <h1 class="features-title text-center">Parametry oferty</h1>
-      </div>
+          <h3 class="property-subtitle">{{ property.subtitle }}</h3>
+        </div>
 
-      <div class="features-text__container">
+        <div class="price">
+          <h1 class="property-price text-center">
+            <b>
+              <span> {{ property.price }} zł </span>
+            </b>
+          </h1>
+        </div>
+
+        <div style="clear: both; margin-bottom: 30px"></div>
+
+        <h3 class="features-title text-center">Parametry oferty</h3>
+
+        <!-- <div class="features-text__container">
         <div class="features-text__column">
           <p>Typ nieruchomości: {{ property.type }}</p>
           <p>Typ transkacji: {{ property.transactionType }}</p>
@@ -49,141 +55,184 @@
 
           <p>Piętro: {{ property.floor }}</p>
         </div>
-      </div>
+      </div> -->
 
-      <div class="more-features-title__container">
-        <h1 class="more-features-title text-center">Cechy oferty</h1>
-      </div>
+        <div class="col-sm-6 offer-parameter">
+          <strong>Typ nieruchomości: </strong>
+          {{ property.type }}
+        </div>
 
-      <div
-        class="more-features-text__container"
-        *ngFor="let feature of property.features"
-      >
-        <p class="text-center">{{ feature }}</p>
-      </div>
-    </div>
-  </div>
+        <div class="col-sm-6 offer-parameter">
+          <strong>Typ transakcji: </strong>
+          {{ property.transactionType }}
+        </div>
 
-  <div class="description-container flex">
-    <div class="description-body col-sm-7" *ngIf="property.description">
-      <h1 class="title">Opis</h1>
-      <h3 class="subtitle">{{ property.descriptionTitle }}</h3>
+        <div class="col-sm-6 offer-parameter">
+          <strong>Powierzchnia: </strong>
+          {{ property.area }} m<span class="power">2</span>
+        </div>
 
-      <p class="text">
-        {{ property.description }}
-      </p>
-    </div>
+        <div class="col-sm-6 offer-parameter">
+          <strong>Rok Budowy: </strong>
+          {{ property.year }}
+        </div>
 
-    <div class="contact-body col-sm-5">
-      <div class="form-container" *ngIf="!post; else formInfo" novalidate>
-        <form
-          [formGroup]="formGroup"
-          (ngSubmit)="onSubmit(formGroup.value)"
-          class="form"
+        <div class="col-sm-6 offer-parameter">
+          <strong>Nr Oferty: </strong>
+          {{ property.offer }}
+        </div>
+
+        <div class="col-sm-6 offer-parameter">
+          <strong>Liczba pokoi: </strong>
+          {{ property.rooms }}
+        </div>
+
+        <div class="col-sm-6 offer-parameter">
+          <strong>Piętro: </strong>
+          {{ property.floor }}
+        </div>
+
+        <div style="clear: both"></div>
+
+        <h3 class="features-title text-center">Cechy oferty</h3>
+        <div
+          class="more-features-text__container col-sm-6 col-xs-12 offer-parameter"
+          *ngFor="let feature of property.features"
         >
-          <mat-form-field class="form-element">
-            <input matInput placeholder="Imię" formControlName="name" />
-            <mat-error *ngIf="!name.valid && name.touched">
-              {{ titleAlert }}
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="form-element">
-            <input matInput placeholder="Telefon" formControlName="phone" />
-
-            <mat-error
-              *ngIf="
-                !formGroup.controls['phone'].valid &&
-                formGroup.controls['phone'].touched
-              "
-            >
-              Numer telefonu nie jest poprawny
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="form-element">
-            <input matInput placeholder="Email" formControlName="email" />
-
-            <mat-error
-              *ngIf="
-                !formGroup.controls['email'].valid &&
-                formGroup.controls['email'].touched
-              "
-            >
-              Email nie jest poprawny
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="form-element">
-            <textarea
-              matInput
-              placeholder="Wiadomość"
-              formControlName="message"
-            ></textarea>
-
-            <mat-error
-              *ngIf="
-                !formGroup.controls['message'].valid &&
-                formGroup.controls['message'].touched
-              "
-            >
-              Wiadomość nie jest poprawna
-            </mat-error>
-          </mat-form-field>
-
-          <div class="form-element">
-            <button
-              mat-raised-button
-              color="primary"
-              type="submit"
-              class="button"
-              [disabled]="!formGroup.valid"
-            >
-              Wyślij
-            </button>
-          </div>
-        </form>
-      </div>
-      <ng-template #formInfo>
-        <div class="container">
-          <h1>Dziękujemy za wiadomość. Skontaktujemy się z Tobą wkrótce</h1>
-        </div>
-      </ng-template>
-
-      <div class="agent-container" *ngIf="property.agent">
-        <h1 class="title">Skontaktuj się z agentem</h1>
-
-        <div class="agent-body">
-          <h1 class="agent-name">{{ property.agent.name }}</h1>
-          <h3 class="agent-company">{{ property.agent.agency }}</h3>
-
-          <div class="agent-photo__container">
-            <img
-              src="{{ property.agent.photo }}"
-              alt="Agent"
-              class="agent-photo"
-            />
-          </div>
-
-          <div class="agent-phone__container">
-            <a
-              mat-button
-              href="tel:{{ property.agent.phone }}"
-              class="agent-phone"
-              >{{ property.agent.phone }}</a
-            >
-          </div>
-
-          <div class="agent-email__container">
-            <a
-              mat-button
-              href="mailto:{{ property.agent.email }}"
-              class="agent-email"
-              >{{ property.agent.email }}</a
-            >
-          </div>
+          {{ feature }}
         </div>
       </div>
     </div>
-  </div>
-</section>
+    <div style="clear: both"></div>
+
+    <div class="details-container">
+      <br />
+      <div class="description-body col-sm-7" *ngIf="property.description">
+        <h3 class="description-title">Opis</h3>
+        <h6 class="description-subtitle">{{ property.descriptionTitle }}</h6>
+
+        <br />
+
+        {{ property.description }}
+      </div>
+
+      <div class="col-sm-1 form-offer-box"></div>
+
+      <div class="contact-body col-sm-3">
+        <div class="form-container" *ngIf="!post; else formInfo" novalidate>
+          <form
+            [formGroup]="formGroup"
+            (ngSubmit)="onSubmit(formGroup.value)"
+            class="form"
+          >
+            <mat-form-field class="form-element">
+              <input matInput placeholder="Imię" formControlName="name" />
+              <mat-error *ngIf="!name.valid && name.touched">
+                {{ titleAlert }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+              <input matInput placeholder="Telefon" formControlName="phone" />
+
+              <mat-error
+                *ngIf="
+                  !formGroup.controls['phone'].valid &&
+                  formGroup.controls['phone'].touched
+                "
+              >
+                Numer telefonu nie jest poprawny
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+              <input matInput placeholder="Email" formControlName="email" />
+
+              <mat-error
+                *ngIf="
+                  !formGroup.controls['email'].valid &&
+                  formGroup.controls['email'].touched
+                "
+              >
+                Email nie jest poprawny
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+              <textarea
+                matInput
+                placeholder="Wiadomość"
+                formControlName="message"
+              ></textarea>
+
+              <mat-error
+                *ngIf="
+                  !formGroup.controls['message'].valid &&
+                  formGroup.controls['message'].touched
+                "
+              >
+                Wiadomość nie jest poprawna
+              </mat-error>
+            </mat-form-field>
+
+            <div class="form-element">
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                class="button"
+                [disabled]="!formGroup.valid"
+              >
+                Wyślij
+              </button>
+            </div>
+          </form>
+        </div>
+        <ng-template #formInfo>
+          <div class="container">
+            <h1>Dziękujemy za wiadomość. Skontaktujemy się z Tobą wkrótce</h1>
+          </div>
+        </ng-template>
+
+        <div class="agent-container" *ngIf="property.agent">
+          <h3 class="agent-title">Skontaktuj się z agentem</h3>
+
+          <div class="agent-body">
+            <h3 class="agent-name">{{ property.agent.name }}</h3>
+            <h6 class="agent-company">{{ property.agent.agency }}</h6>
+
+            <div class="agent-photo__container">
+              <img
+                src="{{ property.agent.photo }}"
+                alt="Agent"
+                class="agent-photo"
+              />
+            </div>
+
+            <div class="agent-phone__container">
+              <a
+                mat-button
+                href="tel:{{ property.agent.phone }}"
+                class="agent-phone"
+                >{{ property.agent.phone }}</a
+              >
+            </div>
+
+            <div class="agent-email__container">
+              <a
+                mat-button
+                href="mailto:{{ property.agent.email }}"
+                class="agent-email"
+                >{{ property.agent.email }}</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-1 form-offer-box"></div>
+
+      <div style="clear: both"></div>
+    </div>
+  </section>
+</div>

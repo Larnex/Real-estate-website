@@ -8,7 +8,7 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
-import { Image, Property } from 'src/app/interfaces/property';
+import { Property } from 'src/app/interfaces/property';
 
 @Component({
   selector: 'app-property-details',

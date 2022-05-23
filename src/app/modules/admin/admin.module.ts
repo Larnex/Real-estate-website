@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 import { AddPropertyComponent } from './components/add-property/add-property.component';
 import { EditPageComponent } from './components/edit-page/edit-page.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { EditPageComponent } from './components/edit-page/edit-page.component';
     AdminLayoutComponent,
     AddPropertyComponent,
     EditPageComponent,
+    AddUserComponent,
   ],
   imports: [
     CommonModule,

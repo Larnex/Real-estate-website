@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'property/:id', component: PropertyDetailsComponent },
       { path: 'properties', component: PropertiesComponent },
       {
-        path: 'login',
+        path: 'auth',
         loadChildren: () =>
           import('./modules/user/user.module').then((m) => m.UserModule),
       },

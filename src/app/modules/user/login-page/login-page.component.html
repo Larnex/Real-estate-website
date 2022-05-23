@@ -1,53 +1,39 @@
-<mat-card>
-  <div>
-    <h3>Sign In</h3>
-  </div>
+<!-- <ng-container *ngIf="user | async; else login">
+  Congrats You logged in
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <!-- form field for email input-->
-    <!-- if email is valid give the 'accent' color to field -->
-    <mat-form-field [color]="email!.valid && 'accent'">
-      <!-- material input -->
-      <!-- bind to email form control -->
-      <input
-        matInput
-        formControlName="email"
-        placeholder="Email"
-        autocomplete="off"
-      />
+  <button></button>
+</ng-container>
 
-      <!-- show error message when email is not valid -->
-      <mat-error *ngIf="email!.invalid && email!.dirty">
-        You must enter a valid email address
-      </mat-error>
+<ng-template #login>
+  <input matInput type="email" [(ngModel)]="email" />
+
+  <hr />
+
+  <button [disabled]="emailSent" (click)="sendEmailLink()">Send Link</button>
+
+  <hr />
+
+  <div *ngIf="emailSent">We sent you an email with your login link.</div>
+
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+</ng-template> -->
+
+<ng-container>
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
     </mat-form-field>
 
-    <!-- form field for password -->
-    <!-- don't show if user's trying to reset the password -->
-    <mat-form-field [color]="password!.valid && 'accent'">
-      <input
-        matInput
-        formControlName="password"
-        type="password"
-        placeholder="Password"
-        autocomplete="off"
-      />
-
-      <mat-error *ngIf="password!.invalid && password!.dirty"
-        >Password must be at least 6 characters long</mat-error
-      >
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
     </mat-form-field>
 
-    <mat-error class="server-error"> {{ serverMessage }} </mat-error>
-
-    <!-- disable submit button if form is invalid || password doesn't match || form is loading -->
-    <button
-      mat-raised-button
-      color="accent"
-      type="submit"
-      [disabled]="form.invalid || loading"
-    >
-      Submit
-    </button>
+    <button mat-raised-button color="primary" type="submit">Login</button>
   </form>
-</mat-card>
+</ng-container>
+
+<ng-template #login>
+  <h1>You are already login</h1>
+</ng-template>

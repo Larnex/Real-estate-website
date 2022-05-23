@@ -1,8 +1,6 @@
 <header class="flex">
   <div class="logo">
-    <a href="index.html">
-      <!-- <img src="/assets/logo/logo-serumah.svg" alt="logo" /> -->
-    </a>
+    <a href="index.html"> </a>
   </div>
   <div class="flex" style="align-items: center">
     <nav>
@@ -24,20 +22,33 @@
             >Nieruchomości</a
           >
         </li>
+
+        <button
+          class="btn contact"
+          [routerLink]="['/auth/registration']"
+          routerLinkActive="active"
+          *ngIf="!this.isLogged; else empty"
+        >
+          Rejestracja
+        </button>
+
+        <button
+          class="btn contact"
+          [routerLink]="['/auth/login']"
+          routerLinkActive="active"
+          *ngIf="!this.isLogged"
+        >
+          Zaloguj się
+        </button>
+        <button class="btn contact" (click)="auth.signOut()">
+          Wyloguj się
+        </button>
       </ul>
     </nav>
-    <button
-      class="btn contact"
-      [routerLink]="['/login']"
-      routerLinkActive="active"
-      *ngIf="!(auth.user$ | async); else signOut"
-    >
-      Login
-    </button>
 
-    <ng-template #signOut>
-      <button class="btn contact" (click)="auth.signOut()">Sign out</button>
-    </ng-template>
+    <ng-template> </ng-template>
+
+    <ng-template #empty> </ng-template>
 
     <button
       class="nav-toggle"

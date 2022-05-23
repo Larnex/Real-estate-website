@@ -1,3 +1,4 @@
+import { NgInitDirective } from './directives/trigger-on-load.directive';
 import { MaterialExampleModule } from './material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +24,7 @@ import { PropertyDetailsComponent } from './components/property-details/property
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PropertiesComponent } from './components/properties/properties.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MainPageComponent,
     PropertyDetailsComponent,
     PropertiesComponent,
+    NgInitDirective,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MaterialExampleModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

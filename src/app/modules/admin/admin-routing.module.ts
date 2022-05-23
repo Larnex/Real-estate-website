@@ -1,3 +1,4 @@
+import { AddUserComponent } from './components/add-user/add-user.component';
 import { AddPropertyComponent } from './components/add-property/add-property.component';
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 import { AdminGuard } from './../../guards/admin.guard';
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'property/:id/edit',
         component: EditPageComponent,
+      },
+      {
+        path: 'add-user',
+        component: AddUserComponent,
       },
     ],
   },

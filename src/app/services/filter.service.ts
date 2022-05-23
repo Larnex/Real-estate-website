@@ -1,16 +1,20 @@
+import { AuthService } from './auth.service';
+import { CanReadGuard } from './../guards/can-read.guard';
 import { DataService } from './data.service';
 import { Injectable } from '@angular/core';
 import { Property } from '../interfaces/property';
 import * as _ from 'lodash';
 import { StringLiteralLike } from 'typescript';
+import { thru } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FilterService {
   // unwrapped arrays from firebase
-  properties!: any;
+  properties: any = [];
   filteredProperties!: any;
+  isAuthenticated: boolean;
 
   // filter-able properties
 
@@ -36,15 +40,21 @@ export class FilterService {
   // Active filter rules
   filters: any = {};
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private auth: AuthService) {
+    this.auth
+      .isLoggedIn()
+      .then((value) => (this.isAuthenticated = value as boolean));
     this.dataService.getProperties().subscribe((properties) => {
-      console.log('properties:', properties);
-      this.properties = properties;
+      properties.map((property) => {
+        if (property.hidden && this.isAuthenticated) {
+          this.properties.push(property);
+        } else if (!property.hidden) {
+          this.properties.push(property);
+        }
+      });
+
       this.applyFilter();
     });
-
-    // this.properties = this.dataService.getProperties();
-    // this.applyFilter();
   }
 
   public applyFilter() {

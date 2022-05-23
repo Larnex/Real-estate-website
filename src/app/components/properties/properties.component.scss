@@ -25,6 +25,12 @@
   margin-bottom: 30px;
 }
 
+.residence {
+  border: 1px solid #e2e2e2;
+  background-color: #fff;
+  box-shadow: 0 2px 2px -1px #aaa;
+}
+
 label {
   display: none;
   font-size: var(--fs-500);
@@ -65,6 +71,8 @@ label {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  height: 400px;
+  object-fit: cover;
 }
 
 .info {
@@ -117,10 +125,6 @@ label {
   width: 100%;
   margin: 0 20px;
   margin-bottom: 30px;
-
-  .btn {
-    font-size: clamp(var(--fs-500), 3vmin, var(--fs-700));
-  }
 }
 
 .btn {

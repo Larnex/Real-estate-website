@@ -1,134 +1,310 @@
-<section class="hero">
-  <h1 class="hero__title">Find Property that are made for you.</h1>
-  <p class="hero__body-text">
-    Eveniet suscipit est, iusto dignissimos distinctio, nam beatae vel omnis
-    eligendi blanditiis odio non. Eius ea natus neque.
-  </p>
-  <button class="btn cta-main">Get Started</button>
-  <div class="achievements flex">
-    <p>
-      1200
-      <span class="more-sign">+</span>
-      <span class="subtext">Property Listed</span>
+<div>
+  <section class="hero">
+    <h1 class="hero__title">Find Property that are made for you.</h1>
+    <p class="hero__body-text">
+      Eveniet suscipit est, iusto dignissimos distinctio, nam beatae vel omnis
+      eligendi blanditiis odio non. Eius ea natus neque.
     </p>
-    <p>
-      4500
-      <span class="more-sign">+</span>
-      <span class="subtext">Happy Customers</span>
-    </p>
-    <p>
-      240
-      <span class="more-sign">+</span>
-      <span class="subtext">Awards Won</span>
-    </p>
-  </div>
-  <div class="search flex">
-    <p class="search__heading">Search for homes in your budget</p>
-    <div class="form">
-      <mat-form-field appearance="fill">
-        <mat-label>Miasto</mat-label>
-        <mat-select
-          [(ngModel)]="filter.city"
-          (selectionChange)="
-            filter.filterExact('city', filter.city); onSelectChange()
-          "
-        >
-          <mat-option value="any">Dowolne</mat-option>
-          <mat-option value="Gdańsk">Gdańsk</mat-option>
-          <mat-option value="Sopot">Sopot</mat-option>
-          <mat-option value="Gdynia">Gdynia</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Typ Nieruchomości</mat-label>
-        <mat-select
-          [(ngModel)]="filter.type"
-          (selectionChange)="
-            filter.filterExact('type', filter.type); onSelectChange()
-          "
-        >
-          <mat-option value="any">Dowolny</mat-option>
-          <mat-option value="Dom">Dom</mat-option>
-          <mat-option value="Działka">Działka</mat-option>
-          <mat-option value="Mieszkanie">Mieszkanie</mat-option>
-          <mat-option value="Komercyjny">Komercyjny</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label> Typ Transakcji </mat-label>
-        <mat-select
-          [(ngModel)]="filter.transactionType"
-          (selectionChange)="
-            filter.filterExact('transactionType', filter.transactionType);
-            onSelectChange()
-          "
-        >
-          <mat-option value="any">Dowolny</mat-option>
-          <mat-option value="Wynajem">Wynajem</mat-option>
-          <mat-option value="Sprzedaż">Sprzedaż</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <button class="btn cta-main">Get Started</button>
+    <div class="achievements flex">
+      <p>
+        1200
+        <span class="more-sign">+</span>
+        <span class="subtext">Property Listed</span>
+      </p>
+      <p>
+        4500
+        <span class="more-sign">+</span>
+        <span class="subtext">Happy Customers</span>
+      </p>
+      <p>
+        240
+        <span class="more-sign">+</span>
+        <span class="subtext">Awards Won</span>
+      </p>
     </div>
-  </div>
-</section>
+    <div class="search flex">
+      <p class="search__heading">Search for homes in your budget</p>
+      <div class="form">
+        <mat-form-field appearance="fill">
+          <mat-label>Miasto</mat-label>
 
-<!-- Properties -->
+          <mat-select
+            [(ngModel)]="filter.city"
+            (selectionChange)="
+              filter.filterExact('city', filter.city); onSelectChange()
+            "
+          >
+            <mat-option value="any">Dowolne</mat-option>
+            <mat-option value="Gdańsk">Gdańsk</mat-option>
+            <mat-option value="Sopot">Sopot</mat-option>
+            <mat-option value="Gdynia">Gdynia</mat-option>
+          </mat-select>
+          <fa-icon [icon]="faLocationArrow" size="lg"></fa-icon>
+        </mat-form-field>
 
-<section class="popular" *ngIf="filter.filteredProperties">
-  <div class="heading flex">
-    <div>
-      <p class="heading-label">Popular</p>
-      <h3 class="sub-heading">Our Popular Residences</h3>
-    </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Typ Nieruchomości</mat-label>
+          <mat-select
+            [(ngModel)]="filter.type"
+            (selectionChange)="
+              filter.filterExact('type', filter.type); onSelectChange()
+            "
+          >
+            <mat-option value="any">Dowolny</mat-option>
+            <mat-option value="Dom">Dom</mat-option>
+            <mat-option value="Działka">Działka</mat-option>
+            <mat-option value="Mieszkanie">Mieszkanie</mat-option>
+            <mat-option value="Komercyjny">Komercyjny</mat-option>
+          </mat-select>
+          <fa-icon [icon]="faHouseUser" size="lg"></fa-icon>
+        </mat-form-field>
 
-    <a href="#">
-      <div class="explore flex">
-        <p>Explore All</p>
-        <img src="../../../assets/arrow-right.svg" alt="arrow" />
+        <mat-form-field appearance="fill">
+          <mat-label> Typ Transakcji </mat-label>
+          <mat-select
+            [(ngModel)]="filter.transactionType"
+            (selectionChange)="
+              filter.filterExact('transactionType', filter.transactionType);
+              onSelectChange()
+            "
+          >
+            <mat-option value="any">Dowolny</mat-option>
+            <mat-option value="Wynajem">Wynajem</mat-option>
+            <mat-option value="Sprzedaż">Sprzedaż</mat-option>
+          </mat-select>
+          <fa-icon [icon]="faCoins" size="lg"></fa-icon>
+        </mat-form-field>
       </div>
-    </a>
-  </div>
+    </div>
+  </section>
 
-  <carousel
-    [cellsToShow]="cellToShow"
-    [height]="carouselHeight"
-    [arrowsTheme]="'dark'"
-    [margin]="20"
-    [arrows]="false"
-  >
-    <div
-      class="carousel-cell"
-      *ngFor="let property of filter.filteredProperties"
+  <!-- Properties -->
+
+  <section class="popular" *ngIf="filter.filteredProperties as properties">
+    <div class="heading flex">
+      <div>
+        <p class="heading-label">Popular</p>
+        <h3 class="sub-heading">Our Popular Residences</h3>
+      </div>
+
+      <a href="#">
+        <div class="explore flex">
+          <p>Explore All</p>
+          <img src="../../../assets/arrow-right.svg" alt="arrow" />
+        </div>
+      </a>
+    </div>
+
+    <carousel
+      [cellsToShow]="cellToShow"
+      [height]="carouselHeight"
+      [arrowsTheme]="'dark'"
+      [margin]="20"
+      [arrows]="false"
     >
-      <div class="residence" #carouselCell>
-        <div class="residence-image">
-          <img src="{{ property.img[0].url }}" alt="residence-image" />
-        </div>
-        <div class="info">
-          <p class="location">
-            {{ property.city }}, {{ property.distriction }}
-          </p>
-          <div class="features flex">
-            <p class="rooms">{{ property.rooms }} bed</p>
-            <p class="size">
-              <i class="bx bxs-ruler"></i>
-              {{ property.area }} m2
-            </p>
-            <p class="area">
-              {{ property.area }} m
-              <span class="power">2</span>
-            </p>
+      <div
+        class="carousel-cell"
+        *ngFor="let property of properties; let $last = last"
+      >
+        <div
+          class="residence"
+          #carouselCell
+          [isLast]="$last"
+          (ngInit)="this.onWindowResize(); this.onStart()"
+        >
+          <div class="residence-image">
+            <img
+              src="{{ property.img[0].url }}"
+              alt="residence-image"
+              style="object-fit: cover; height: 400px"
+            />
           </div>
-          <div class="residence-cta flex">
-            <button class="btn" (click)="showPropertyDetails(property)">
-              SZCZEGÓŁY
-            </button>
-            <p class="price">{{ property.price }} ZŁ</p>
+          <div class="info">
+            <p class="location">
+              {{ property.city }}, {{ property.distriction }}
+            </p>
+            <div class="features flex">
+              <p class="rooms">
+                <fa-icon
+                  [icon]="faRooms"
+                  size="lg"
+                  [styles]="{ 'margin-right': '10px' }"
+                ></fa-icon>
+
+                {{ property.rooms }} bed
+              </p>
+              <p class="size">
+                <fa-icon
+                  [icon]="faArea"
+                  size="lg"
+                  [styles]="{ 'margin-right': '10px' }"
+                ></fa-icon>
+                {{ property.area }} m2
+              </p>
+              <p class="area">
+                <fa-icon
+                  [icon]="faYear"
+                  size="lg"
+                  [styles]="{ 'margin-right': '5px' }"
+                ></fa-icon>
+                Rok budowy:
+                {{ property.year }}
+              </p>
+            </div>
+            <div class="residence-cta flex">
+              <button class="btn" (click)="showPropertyDetails(property)">
+                SZCZEGÓŁY
+              </button>
+              <p class="price">{{ property.price }} ZŁ</p>
+            </div>
           </div>
         </div>
       </div>
+    </carousel>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <div class="about-us flex">
+      <p class="founder">
+        Jose Kusuma
+        <span class="position">Founder Serumah</span>
+      </p>
+      <div class="quote">
+        <fa-icon [icon]="faQuote" size="lg"></fa-icon>
+
+        <p>
+          Our business is one of close relationships and we are very fortunate
+          to be able to share so many positibe real estate experiences with out
+          clients.
+        </p>
+      </div>
     </div>
-  </carousel>
-</section>
+    <div class="clients flex">
+      <img
+        src="https://wetog.pl/wp-content/uploads/2021/07/LOGO_starter-1.png"
+        alt="client-logo"
+      />
+      <img
+        src="https://wetog.pl/wp-content/uploads/2021/08/HelpNGO-logo.png"
+        alt="client-logo"
+      />
+      <img
+        src="https://wetog.pl/wp-content/uploads/2021/07/LOGO_voicelab.png"
+        alt="client-logo"
+      />
+      <img
+        src="https://wetog.pl/wp-content/uploads/2021/11/simulo-logo-1.png"
+        alt="client-logo"
+      />
+    </div>
+  </section>
+
+  <!-- Our Service -->
+  <section class="our-services">
+    <div class="our-service__image flex">
+      <img
+        class="img-1"
+        src="https://firebasestorage.googleapis.com/v0/b/real-estate-963b8.appspot.com/o/properties%2Fdom_dziurawy_81.waw_.pl_011.jpg?alt=media&token=4d393865-db24-4e3f-a5b8-a366a57c6d8b"
+        alt="house"
+      />
+      <img
+        class="img-2"
+        src="https://firebasestorage.googleapis.com/v0/b/real-estate-963b8.appspot.com/o/properties%2Fdownload.jpeg?alt=media&token=6c242452-60d4-43a0-b551-2c16549a8b3f"
+        alt="house"
+      />
+    </div>
+    <div class="our-service__body">
+      <p class="heading-label">Our Service</p>
+      <h3 class="sub-heading">Comfort is our Top Priotity for you</h3>
+      <p class="service__body-text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint error in
+        expedita labore animi, consectetur repellendus quia.
+      </p>
+      <div class="services">
+        <div>
+          <p class="list-item">Premium national marketing</p>
+          <p class="list-item">Managed viewings</p>
+        </div>
+        <div>
+          <p class="list-item">Free, no obligation valuations</p>
+          <p class="list-item">Local area knowledge</p>
+        </div>
+      </div>
+      <button class="btn">See More</button>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="faq-intro">
+      <p class="heading-label">Question</p>
+      <h3 class="sub-heading">Frequently Asked Questions</h3>
+      <p class="faq-body">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate
+        omnis minus dolor corrupti facere nihil!
+      </p>
+      <button class="btn">See More</button>
+    </div>
+    <div class="accordion">
+      <div class="accordion-item" data-visible="false">
+        <div class="question flex">
+          <p>Do you offer home loan services?</p>
+          <fa-icon [icon]="faArrowDown"></fa-icon>
+        </div>
+        <div class="answer">
+          <p>
+            Yes, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et,
+            facere. Lorem ipsum dolor sit amet.
+          </p>
+        </div>
+      </div>
+      <div class="accordion-item" data-visible="false">
+        <div class="question flex">
+          <p>What are Capital Gains on property purchase?</p>
+          <fa-icon [icon]="faArrowDown"></fa-icon>
+        </div>
+        <div class="answer">
+          <p>
+            The capital gains are dolor sit amet, consectetur adipisicing elit.
+            Et, facere. Lorem ipsum dolor sit amet.
+          </p>
+        </div>
+      </div>
+      <div class="accordion-item" data-visible="false">
+        <div class="question flex">
+          <p>What kind of properties are listed on your website?</p>
+          <fa-icon [icon]="faArrowDown"></fa-icon>
+        </div>
+        <div class="answer">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et,
+            facere. Lorem ipsum dolor sit amet.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer flex">
+    <div class="logo">
+      <a href="index.html">
+        <img src="/assets/logo/logo-serumah.svg" alt="logo" />
+      </a>
+    </div>
+    <div class="socials">
+      <a href="#" class="social-link"><fa-icon [icon]="faTwitter"></fa-icon></a>
+      <a href="#" class="social-link"
+        ><fa-icon [icon]="faFacebook"></fa-icon
+      ></a>
+      <a href="#" class="social-link"
+        ><fa-icon [icon]="faInstagram"></fa-icon
+      ></a>
+      <a href="#" class="social-link"
+        ><fa-icon [icon]="faLinkedIn"></fa-icon
+      ></a>
+    </div>
+  </footer>
+</div>
